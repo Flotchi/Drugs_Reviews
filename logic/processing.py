@@ -14,9 +14,9 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-def load_data():
+def load_data(file):
     path = __file__
-    rpath = os.path.join(os.path.dirname(os.path.dirname(path)),'raw_data', 'Combined Data.csv')
+    rpath = os.path.join(os.path.dirname(os.path.dirname(path)),'raw_data', file)
     df = pd.read_csv(rpath)
     return df
 def preproc(df, bi = False):
