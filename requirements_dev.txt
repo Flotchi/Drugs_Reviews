@@ -8,6 +8,8 @@ wheel
 ipdb
 ipykernel
 
+nltk
+
 # data viz
 matplotlib
 seaborn
