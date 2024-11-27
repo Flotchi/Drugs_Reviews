@@ -17,8 +17,10 @@ from nltk.stem import WordNetLemmatizer
 def load_data(file):
     path = __file__
     rpath = os.path.join(os.path.dirname(os.path.dirname(path)),'raw_data', file)
-    df = pd.read_csv(rpath)
+    df = pd.read_csv(rpath, na_values=['NaN'], keep_default_na=False)
     return df
+
+
 def preproc(df, bi = False):
 
     df.dropna(inplace=True)
@@ -26,7 +28,7 @@ def preproc(df, bi = False):
     def process(st):
         for punc in string.punctuation:
             st = st.replace(punc, '')
-        ans = st.casefold()
+        ans = st.casefold().replace('\n', ' ')
         ansd = ''.join(x for x in ans if not x.isdigit())
         stop = set(stopwords.words('english'))
         tokens = word_tokenize(ansd)
@@ -35,13 +37,17 @@ def preproc(df, bi = False):
         lemmanouns = [WordNetLemmatizer().lemmatize(word, pos='n') for word in lemmaverb]
         nans = ' '.join(lemmanouns)
         return nans
+
     df['clean'] = df['statement'].apply(process)
 
-    def encode_bi(st):
-        return int(st == 'Normal')
     if bi:
-        df['label'] = df['status'].apply(encode_bi)
+        df['label'] = df['status'].apply(lambda st: int(st == 'Normal'))
     return df
 
+
 if __name__ == '__main__':
-    print(preproc(load_data(), bi = True))
+    data = load_data('Combined Data.csv')
+    df = preproc(data, bi=True)
+    path = __file__
+    rpath = os.path.join(os.path.dirname(os.path.dirname(path)), 'raw_data', 'processed_combined_data.csv')
+    df.to_csv(rpath, na_rep='NaN', index=False)
