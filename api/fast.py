@@ -1,10 +1,10 @@
 # TODO: Import your package, replace this by explicit imports of what you need
-from packagename.main import predict
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import models.NB
 
 app = FastAPI()
+app.state.model, app.state.vecto = models.NB.load_NB()
 
 app.add_middleware(
     CORSMiddleware,
@@ -21,18 +21,18 @@ def root():
         'message': "Hi, The API is running!"
     }
 
+
 # Endpoint for https://your-domain.com/predict?input_one=154&input_two=199
 @app.get("/predict")
-def get_predict(input_one: float,
-            input_two: float):
-    # TODO: Do something with your input
-    # i.e. feed it to your model.predict, and return the output
-    # For a dummy version, just return the sum of the two inputs and the original inputs
-    prediction = float(input_one) + float(input_two)
+def get_predict(st):
+    model = app.state.model
+    vecto = app.state.vecto
+    X_new = vecto.transform([str(st)])
+    pred = model.predict(X_new)
+    ans = int(pred[0])
+    if ans:
+        response = 'Normal!'
+    else: response = 'Crazy!'
     return {
-        'prediction': prediction,
-        'inputs': {
-            'input_one': input_one,
-            'input_two': input_two
+        'prediction': response
         }
-    }
