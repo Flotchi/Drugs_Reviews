@@ -4,11 +4,11 @@ from sklearn.naive_bayes import MultinomialNB
 import joblib
 import os
 
-df = lp.load_data('processed_combined_data.csv')
+
 
 
 def create_NB():
-
+    df = lp.load_data('processed_combined_data.csv')
     vecto = TfidfVectorizer(ngram_range=(1,1), max_df= 0.9)
     model = MultinomialNB(alpha=0.01)
 
