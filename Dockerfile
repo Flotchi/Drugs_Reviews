@@ -2,17 +2,13 @@
 # Tip: start with a full base image, and then see if you can optimize with
 #      a slim or tensorflow base
 
-#      Standard version
-FROM python:3.10
-
-#      Slim version
-# FROM python:3.10-slim
+FROM python:3.10-slim
 
 #      Tensorflow version (attention: won't run on Apple Silicon)
 # FROM tensorflow/tensorflow:2.16.1
 
 # Copy everything we need into the image
-COPY packagename packagename
+COPY logic /logic
 COPY api api
 COPY requirements.txt requirements.txt
 COPY setup.py setup.py

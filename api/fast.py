@@ -1,10 +1,10 @@
 # TODO: Import your package, replace this by explicit imports of what you need
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import models.NB
+import logic.NB
 
 app = FastAPI()
-app.state.model, app.state.vecto = models.NB.load_NB()
+app.state.model, app.state.vecto = logic.NB.load_NB()
 
 app.add_middleware(
     CORSMiddleware,
