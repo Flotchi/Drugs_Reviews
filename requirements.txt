@@ -21,3 +21,4 @@ uvicorn
 # Seb
 nltk
 scikit-learn
+joblib
