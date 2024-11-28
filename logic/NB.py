@@ -24,16 +24,16 @@ def create_NB():
 
 def save_model():
     model, vecto = create_NB()
-    path = os.path.dirname(__file__)
+    path = os.path.dirname(os.path.dirname(__file__))
 
-    joblib.dump(vecto, os.path.join(path, 'tfidvecto.pkl'))
-    joblib.dump(model, os.path.join(path, 'NB.pkl'))
+    joblib.dump(vecto, os.path.join(path, 'models', 'tfidvecto.pkl'))
+    joblib.dump(model, os.path.join(path,'models', 'NB.pkl'))
     return None
 
 def load_NB():
-    path = os.path.dirname(__file__)
-    vecto = joblib.load(os.path.join(path,'tfidvecto.pkl'))
-    model = joblib.load(os.path.join(path,'NB.pkl'))
+    path = os.path.dirname(os.path.dirname(__file__))
+    vecto = joblib.load(os.path.join(path,'models', 'tfidvecto.pkl'))
+    model = joblib.load(os.path.join(path,'models', 'NB.pkl'))
     return model, vecto
 
 

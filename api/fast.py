@@ -31,8 +31,8 @@ def get_predict(st):
     pred = model.predict(X_new)
     ans = int(pred[0])
     if ans:
-        response = 'Normal!'
-    else: response = 'Crazy!'
+        response = "Oh no, you are normal"
+    else: response = 'Congratulations ! You are crazy'
     return {
         'prediction': response
         }
