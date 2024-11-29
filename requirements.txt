@@ -3,7 +3,7 @@ numpy<2.0.0
 pandas==2.1.4
 
 # Uncomment if you use sklearn
-scikit-learn
+scikit-learn==1.5.2
 
 # Install the correct TensorFlow version
 # Uncomment if you use TensorFlow
