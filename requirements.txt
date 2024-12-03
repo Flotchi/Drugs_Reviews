@@ -24,3 +24,5 @@ scikit-learn
 joblib
 transformers
 keras
+xgboost
+torch
