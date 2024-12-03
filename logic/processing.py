@@ -44,6 +44,28 @@ def preproc(df, bi = False):
         df['label'] = df['status'].apply(lambda st: int(st == 'Normal'))
     return df
 
+def balance_dataset(X, y):
+
+    df = pd.DataFrame({'review': X, 'sentiment': y})
+
+    good_reviews = df[df['sentiment'] == 'Good']
+    bad_reviews = df[df['sentiment'] == 'Bad']
+
+
+    min_size = min(len(good_reviews), len(bad_reviews))
+
+
+    good_balanced = good_reviews.sample(n=min_size, random_state=42)
+    bad_balanced = bad_reviews.sample(n=min_size, random_state=42)
+
+
+    balanced_df = pd.concat([good_balanced, bad_balanced]).sample(frac=1, random_state=42)
+
+
+    X_balanced = balanced_df['review']
+    y_balanced = balanced_df['sentiment']
+
+    return X_balanced, y_balanced
 
 if __name__ == '__main__':
     data = load_data('Combined Data.csv')
