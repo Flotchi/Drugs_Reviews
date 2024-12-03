@@ -30,15 +30,15 @@ def preproc(df, bi = False):
             st = st.replace(punc, '')
         ans = st.casefold().replace('\n', ' ')
         ansd = ''.join(x for x in ans if not x.isdigit())
-        stop = set(stopwords.words('english'))
+        """stop = set(stopwords.words('english'))"""
         tokens = word_tokenize(ansd)
-        ansdd = [y for y in tokens if y not in stop]
-        lemmaverb = [WordNetLemmatizer().lemmatize(word, pos='v') for word in ansdd]
+        """ansdd = [y for y in tokens if y not in stop]"""
+        lemmaverb = [WordNetLemmatizer().lemmatize(word, pos='v') for word in tokens]
         lemmanouns = [WordNetLemmatizer().lemmatize(word, pos='n') for word in lemmaverb]
         nans = ' '.join(lemmanouns)
         return nans
 
-    df['clean'] = df['statement'].apply(process)
+    df['clean'] = df['review'].apply(process)
 
     if bi:
         df['label'] = df['status'].apply(lambda st: int(st == 'Normal'))
