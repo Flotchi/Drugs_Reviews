@@ -30,11 +30,6 @@ def preproc(df, bi = False):
             st = st.replace(punc, '')
         ans = st.casefold().replace('\n', ' ')
         ansd = ''.join(x for x in ans if not x.isdigit())
-        stop = set(stopwords.words('english'))
-        tokens = word_tokenize(ansd)
-
-        ansdd = [y for y in tokens if y not in stop]
-        ansdd = [y for y in tokens if y not in stop]
 
         lemmaverb = [WordNetLemmatizer().lemmatize(word, pos='v') for word in tokens]
         lemmanouns = [WordNetLemmatizer().lemmatize(word, pos='n') for word in lemmaverb]
@@ -70,6 +65,16 @@ def balance_dataset(X, y):
     y_balanced = balanced_df['sentiment']
 
     return X_balanced, y_balanced
+
+def data_filter(df,uselfCount=0,min_length=30):
+    df = df.dropna()
+    df = df[df['rating'].isin([1,2,3,8,9,10])]
+    df['sentiment'] = 0
+    df['sentiment'] = (df['rating'].isin([8,9,10])).astype(int)
+    df = df[df['usefulCount']>uselfCount]
+    df['review_length'] = df['review'].apply(lambda x: len(str(x).split()))
+    df = df[df.review_length>=min_length]
+    return df
 
 if __name__ == '__main__':
     data = load_data('Combined Data.csv')
