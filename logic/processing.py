@@ -52,8 +52,8 @@ def balance_dataset(X, y):
 
     df = pd.DataFrame({'review': X, 'sentiment': y})
 
-    good_reviews = df[df['sentiment'] == 'Good']
-    bad_reviews = df[df['sentiment'] == 'Bad']
+    good_reviews = df[df['sentiment'] == 1]
+    bad_reviews = df[df['sentiment'] == 0]
 
 
     min_size = min(len(good_reviews), len(bad_reviews))
