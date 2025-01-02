@@ -31,7 +31,7 @@ def preproc(df, bi = False):
         ans = st.casefold().replace('\n', ' ')
         ansd = ''.join(x for x in ans if not x.isdigit())
 
-        lemmaverb = [WordNetLemmatizer().lemmatize(word, pos='v') for word in tokens]
+        lemmaverb = [WordNetLemmatizer().lemmatize(word, pos='v') for word in ansd.split()]
         lemmanouns = [WordNetLemmatizer().lemmatize(word, pos='n') for word in lemmaverb]
         nans = ' '.join(lemmanouns)
         return nans

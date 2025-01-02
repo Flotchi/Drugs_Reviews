@@ -1,7 +1,7 @@
 # TODO: Import your package, replace this by explicit imports of what you need
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import logic.NB
+import logic.LSTM
 
 app = FastAPI()
 app.state.model, app.state.vecto = logic.NB.load_NB()
@@ -24,10 +24,14 @@ def root():
 
 # Endpoint for https://your-domain.com/predict?input_one=154&input_two=199
 @app.get("/predict")
-def get_predict(st):
+def get_predict(review):
     model = app.state.model
-    vecto = app.state.vecto
-    X_new = vecto.transform([str(st)])
+    word2vec = app.state.word2vec
+
+    review_preproc = prepoc(review)
+    review_tk =
+
+    X_new = embed(st)
     pred = model.predict(X_new)
     ans = int(pred[0])
     if ans:
