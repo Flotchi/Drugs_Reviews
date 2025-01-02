@@ -2,9 +2,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import logic.NB
+import logic.processing_new_input
+import joblib
+import os
+
 
 app = FastAPI()
 app.state.model, app.state.vecto = logic.NB.load_NB()
+path = os.path.dirname(os.path.dirname(__file__))
+app.state.seb = joblib.load(os.path.join(path,'models', 'lstm2.pkl'))
 
 app.add_middleware(
     CORSMiddleware,
@@ -36,3 +42,12 @@ def get_predict(st):
     return {
         'prediction': response
         }
+
+
+
+@app.get('/lstm')
+def get_lstm(st):
+    model = app.state.seb
+    X = logic.processing_new_input.processing_new(st)
+    pred = model.predict(X)[0][0]
+    return {'answer' : float(pred) }
