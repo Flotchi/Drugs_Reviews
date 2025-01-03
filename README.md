@@ -17,7 +17,16 @@ PharmaFeel is a sentiment analysis project designed to process and classify user
 
 2️⃣ Data exploration
 
-In the notebook 'Data exploration.ipynb', we have conducted some data analysis in order to understand whats's underlying the data. This exploration aims to optimise the data cleaning phase. Indeed, the goal of this step is to remove noise and outsiders. 
+In the notebook Data_exploration.ipynb, we performed an in-depth analysis to better understand the underlying patterns and structure of the data. This exploration is essential to optimize the data cleaning phase. The primary goal of this step is to identify and remove noise as well as outliers, ensuring the dataset is more reliable and ready for further processing.
+
+First, we observe that most of the review lengths are concentrated between 500 and 1,000 characters. This insight will help us focus on the core reviews and determine the appropriate padding size for deep learning models.
+![image](https://github.com/user-attachments/assets/bc6234e3-1564-4757-8dc7-f922d625fc68)
+
+We observe a sort of polarity between rating score. Most of the reviews are either very good (8,9,10), either bad (1). We will then split the dataset between very bad reviews (1,2,3) and high score (8,9,10).
+![image](https://github.com/user-attachments/assets/2edf242e-ea6a-4936-877c-78cff1d1b1bc)
+
+
+
 
 
 
