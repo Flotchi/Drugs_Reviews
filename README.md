@@ -22,12 +22,25 @@ In the notebook Data_exploration.ipynb, we performed an in-depth analysis to bet
 First, we observe that most of the review lengths are concentrated between 500 and 1,000 characters. This insight will help us focus on the core reviews and determine the appropriate padding size for deep learning models.
 ![image](https://github.com/user-attachments/assets/bc6234e3-1564-4757-8dc7-f922d625fc68)
 
-We observe a sort of polarity between rating score. Most of the reviews are either very good (8,9,10), either bad (1). We will then split the dataset between very bad reviews (1,2,3) and high score (8,9,10).
+We observe a clear polarity in the rating scores. Most of the reviews are either very positive (8, 9, 10) or very negative (1). Based on this observation, we decided to split the dataset into two categories: low ratings (1, 2, 3) and high ratings (8, 9, 10).
+This decision is driven by two main reasons. First, focusing on extremely negative and positive reviews allows the model to better learn and differentiate between very negative and very positive sentiments, avoiding confusion or lack of precision caused by ambiguous intermediate ratings. Second, to ensure the dataset is balanced and the model has enough data to learn effectively, we include sufficient samples in each category by grouping adjacent ratings into broader classes.
 ![image](https://github.com/user-attachments/assets/2edf242e-ea6a-4936-877c-78cff1d1b1bc)
 
+Some verifications can be done afterwards, such as excluding empty reviews, reviews in other languages, and irrelevant reviews (considering the usefulcount).
+Here are the statistical parameters of the usefulcount:
 
+count: 161297.000000
+mean: 28.004755
+std: 36.403742
+min: 0.000000
+25%: 6.000000
+50%: 16.000000
+75%: 36.000000
+max: 1291.000000
 
+We observe a high asymmetry in the reviews' usefulcount. 25% of the reviews have a usefulcount between 36 and 1291. These are likely the most popular drugs. Therefore, the usefulcount may be biased by the popularity of the drugs rather than the relevance of the reviews. We will use the usefulcount to filter the data and assume that popular drugs provide relevant reviews. We will exclude unpopular drugs (low usefulcount).
 
+3️⃣ Text cleaning
 
 
 
