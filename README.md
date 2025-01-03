@@ -61,6 +61,19 @@ First, verbs are lemmatized with pos='v'.
 Then, nouns are lemmatized using the result of the verb lemmatization (pos='n').
 The final lemmatized output is combined into a single string with spaces separating the words.
 
+4️⃣ Data set rebalancing
+
+The balance_dataset function aims to balance an imbalanced dataset by equalizing the number of instances for each class in a binary classification problem (e.g., good vs bad sentiment). Some important points to notice:
+
+In machine learning, imbalanced datasets (where one class has significantly more samples than the other) can lead to biased models. A model trained on an imbalanced dataset may:
+- Predict the majority class more often, leading to poor performance for the minority class.
+- Fail to generalize well to new data, especially if the minority class is underrepresented.
+
+Random sampling is important for several reasons:
+
+- Avoiding Bias: It ensures that the selection of instances for the balanced dataset is not biased by the order or structure of the original data, which could lead to overfitting.
+- Improving Generalization: Random sampling helps create a diverse and representative sample of the data, which is critical for generalizing to new, unseen data.
+- Ensuring Fairness: By randomly sampling from both classes, we avoid selecting only specific patterns or groups from the data, allowing the model to learn more effectively from all the variations in both classes.
 
 # API
 Document main API endpoints here
