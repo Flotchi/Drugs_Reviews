@@ -49,6 +49,17 @@ We observe a high asymmetry in the reviews' usefulcount. 25% of the reviews have
 
 3️⃣ Text cleaning
 
+Text cleaning ensures that the data is in a clean, consistent, and meaningful format that is suitable for the machine learning algorithm, helping the model perform better and learn from the data more effectively. The function preproc helps us to create a new column, 'clean', which standardizes the text data for machine learning. The main steps are:
+
+- Remove Punctuation: It loops through each character in the string st and removes all punctuation marks (using string.punctuation).
+- Convert to Lowercase: It then converts all characters in the string to lowercase using casefold().
+- Remove Newlines: It replaces newline characters (\n) with spaces.
+- Remove Digits: It removes any digits from the string using a list comprehension and isdigit().
+- Lemmatization:
+It applies lemmatization (reducing words to their root form) to the words in the string:
+First, verbs are lemmatized with pos='v'.
+Then, nouns are lemmatized using the result of the verb lemmatization (pos='n').
+The final lemmatized output is combined into a single string with spaces separating the words.
 
 
 # API
