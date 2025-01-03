@@ -77,9 +77,13 @@ Random sampling is important for several reasons:
 
 5️⃣ Models
 
-Once all those steps are completed, we are now performing models comparaisons. We are going to compare 3 types of models: Machine learning, LSTM, Transformers. Each of them required specific preprocessing. 
+After completing all the preprocessing steps, we proceed with model comparisons. The goal is to evaluate and compare the performance of three different types of models: Machine Learning, LSTM, and Transformers. Each model type requires specific preprocessing tailored to its capabilities and requirements.
+
+For the Machine Learning models, we tested different algorithms, including decision trees, random forests, and gradient boosting models like XGBoost. The reason for choosing machine learning models is that they are often simpler and faster to train compared to more complex models like LSTM and Transformers, making them a good baseline for comparison. Additionally, they tend to perform well on structured data and can be easily fine-tuned.
 
 5.1 XGBoost
+
+XGBoost (Extreme Gradient Boosting) is a highly efficient and scalable implementation of gradient boosting, which is an ensemble machine learning technique.
 
 a) Preprocessing
 
