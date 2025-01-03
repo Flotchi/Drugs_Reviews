@@ -61,7 +61,7 @@ First, verbs are lemmatized with pos='v'.
 Then, nouns are lemmatized using the result of the verb lemmatization (pos='n').
 The final lemmatized output is combined into a single string with spaces separating the words.
 
-4️⃣ Data set rebalancing
+4️⃣ Dataset balancing
 
 The balance_dataset function aims to balance an imbalanced dataset by equalizing the number of instances for each class in a binary classification problem (e.g., good vs bad sentiment). Some important points to notice:
 
@@ -74,6 +74,34 @@ Random sampling is important for several reasons:
 - Avoiding Bias: It ensures that the selection of instances for the balanced dataset is not biased by the order or structure of the original data, which could lead to overfitting.
 - Improving Generalization: Random sampling helps create a diverse and representative sample of the data, which is critical for generalizing to new, unseen data.
 - Ensuring Fairness: By randomly sampling from both classes, we avoid selecting only specific patterns or groups from the data, allowing the model to learn more effectively from all the variations in both classes.
+
+5️⃣ Models
+
+Once all those steps are completed, we are now performing models comparaisons. We are going to compare 3 types of models: Machine learning, LSTM, Transformers. Each of them required specific preprocessing. 
+
+5.1 XGBoost
+
+a) Preprocessing
+
+b) Training
+
+c) Evaluation
+
+5.2 LSTM
+
+a) Preprocessing
+
+b) Training
+
+c) Evaluation
+
+5.3 Bert
+
+a) Preprocessing
+
+b) Training
+
+c) Evaluation
 
 # API
 Document main API endpoints here
