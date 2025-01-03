@@ -30,12 +30,19 @@ Some verifications can be done afterwards, such as excluding empty reviews, revi
 Here are the statistical parameters of the usefulcount:
 
 count: 161297.000000
+
 mean: 28.004755
+
 std: 36.403742
+
 min: 0.000000
+
 25%: 6.000000
+
 50%: 16.000000
+
 75%: 36.000000
+
 max: 1291.000000
 
 We observe a high asymmetry in the reviews' usefulcount. 25% of the reviews have a usefulcount between 36 and 1291. These are likely the most popular drugs. Therefore, the usefulcount may be biased by the popularity of the drugs rather than the relevance of the reviews. We will use the usefulcount to filter the data and assume that popular drugs provide relevant reviews. We will exclude unpopular drugs (low usefulcount).
