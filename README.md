@@ -15,7 +15,10 @@ PharmaFeel is a sentiment analysis project designed to process and classify user
 6) Frontend Integration: Developing a user-friendly interface using Streamlit to visualize and interact with predictions.
 7) Cloud Hosting: Hosting the application in the cloud for accessibility and reliability.
 
-2️⃣ Data analysis
+2️⃣ Data exploration
+
+In the notebook 'Data exploration.ipynb', we have conducted some data analysis in order to understand whats's underlying the data. This exploration aims to optimise the data cleaning phase. Indeed, the goal of this step is to remove noise and outsiders. 
+
 
 
 
