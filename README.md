@@ -113,7 +113,15 @@ This combination achieves the highest scores (0.826 and 0.820) while balancing f
 
 5.2 LSTM
 
+This preprocessing pipeline is designed to prepare text data for input into an LSTM model. Since LSTMs require numerical input in a consistent format, the pipeline involves tokenization, embedding, and padding. Additionally, it includes training a Word2Vec model on the training data to generate word embeddings.
+
 a) Preprocessing
+
+The preprocessing pipeline is designed to prepare text data for input into an LSTM model. LSTMs require numerical input in a consistent format, so the pipeline involves tokenization, embedding, and padding.
+
+** Tokenization using text_to_word_sequence()
+** Embedding : Creates a Word2Vec embedding model from the tokenized training data. Maps each word to a dense vector representation of size 60 (set by vector_size), capturing semantic relationships between words. The we convert each tokenized sentence into a list of vectors using the embed_sentence function.
+** Padding: Ensures all sequences are of equal length by padding shorter sequences with zeros (padding='post' adds zeros at the end). Trims longer sequences to a fixed length of 200 tokens (maxlen=200).
 
 b) Training
 
