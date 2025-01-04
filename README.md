@@ -109,7 +109,7 @@ Scores: 0.826 (CV 1/2), 0.820 (CV 2/2)
 Total Time: ~15-16 minutes per fold.
 Performance: Best scores overall, showing that bigrams and a higher learning rate provide the most benefit.
 
-This combination achieves the highest scores (0.826 and 0.820) while balancing feature richness and model updates. However, it comes at the cost of longer training times, which should be considered depending on computational resources.
+This combination achieves the highest scores **(0.826 and 0.820)** while balancing feature richness and model updates. However, it comes at the cost of longer training times, which should be considered depending on computational resources.
 
 5.2 LSTM
 
@@ -125,15 +125,44 @@ The preprocessing pipeline is designed to prepare text data for input into an LS
 
 b) Training
 
+The model is a sequential binary classification architecture with enhanced complexity for improved performance:
+
+Input Layer: Accepts padded sequences of shape (200, 60) from Word2Vec embeddings.
+Masking Layer: Ignores padding values (0) to prevent them from affecting the model.
+Bidirectional LSTM: Processes sequential data in both forward and backward directions with 64 units and tanh activation, focusing on long-term dependencies.
+Dropout Layer: Prevents overfitting by randomly dropping 30% of the connections.
+Dense Hidden Layer: Refines learned features with 32 units and ReLU activation.
+Batch Normalization: Stabilizes training and accelerates convergence by normalizing the hidden layer outputs.
+Output Layer: Uses a sigmoid function to produce a probability for binary classification.
+Compilation: Optimized with adam, using binary_crossentropy for loss and accuracy as a metric.
+This architecture integrates bidirectional LSTMs for deeper sequence understanding, along with regularization and normalization to enhance stability and performance.
+
 c) Evaluation
+
+The LSTM model and the word2vec pretrained model were then evaluate on the test dataset achieving **92% accuracy**. 
 
 5.3 Bert
 
+We now use a pre-trained BERT model. It performs tokenization, encapsulation extraction and prepares the data for further processing or training. The resulting encapsulation will be introduced in the previous model. 
+
 a) Preprocessing
+
+We are using AutoTokenizer and TFAutoModel from Hugging Face Transformers library.
+We are loading **tokenizer** for the pre-trained bert-tiny model and Bert-tiny as pre-trained BERT model.
+
+1) Tokenization : tokenizer(x) converts each review into token IDs (a list of integers), and ["input_ids"] extracts the token IDs.
+2) Embedding: model.predict() runs the tokenized input through the BERT model to obtain embeddings
+3) Accessing Hidden State: we are taking the embedding of the first token in the sequence, which is the [CLS] token. After passing the input through the model, the output provides embeddings for each token in the sequence. By selecting [:, 0, :], we are extracting the embedding corresponding to the [CLS] token, which is often used as a summary representation of the entire sequence. This embedding is a fixed-size vector (128 dimensions for BERT Tiny) that represents the entire sentence or sequence.
 
 b) Training
 
+Training is similar to LSTM but we have adapted the structure so that it accepts an input dimension of (n sequences, 128 dimensions)
+
 c) Evaluation
+
+Training shows after 27 epochs an accuary on validation data that does not exceed 80%. 
+
+6️⃣ Model choice
 
 # API
 Document main API endpoints here
