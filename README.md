@@ -87,9 +87,29 @@ XGBoost (Extreme Gradient Boosting) is a highly efficient and scalable implement
 
 a) Preprocessing
 
+For XGBoost, TF-IDF is usually the most effective vectorization technique for text classification tasks. It provides a sparse matrix representation of the text, highlighting important terms and reducing the impact of common, less-informative words. This is crucial for models like XGBoost, which perform better with well-defined, informative features.
+To streamline the process, TF-IDF will be implemented as part of a pipeline. This pipeline allows for efficient preprocessing and model training, ensuring that the vectorization and classification steps are seamlessly integrated. Moreover, we will optimize its parameters later on through techniques like grid search or random search, ensuring that both the vectorization process and the XGBoost model perform at their best for our dataset.
+
 b) Training
 
+In this step, we focus on training, fine-tuning, and cross-validating our model to identify the optimal parameters for both TF-IDF vectorization and the XGBoost classifier. The process involves using GridSearchCV, a systematic approach to test different combinations of hyperparameters and evaluate their performance.
+
+tfidf__ngram_range:
+We test two configurations:
+(1,1) to consider only individual words (unigrams).
+(1,2) to include both unigrams and pairs of consecutive words (bigrams).
+
+XGB__learning_rate:
+We test two learning rates: 0.01 and 0.1.
+
 c) Evaluation
+
+learning_rate=0.1, ngram_range=(1, 2)
+Scores: 0.826 (CV 1/2), 0.820 (CV 2/2)
+Total Time: ~15-16 minutes per fold.
+Performance: Best scores overall, showing that bigrams and a higher learning rate provide the most benefit.
+
+This combination achieves the highest scores (0.826 and 0.820) while balancing feature richness and model updates. However, it comes at the cost of longer training times, which should be considered depending on computational resources.
 
 5.2 LSTM
 
