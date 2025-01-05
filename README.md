@@ -170,8 +170,25 @@ We don't use XGBoost because it doesn't handle sequential or contextual informat
 
 We don't use BERT because, while powerful, it is computationally expensive and slower to train due to its complex transformer-based architecture. For smaller datasets or simpler tasks, it can be overkill, and its performance may not justify the additional training time and resource requirements compared to LSTM + Word2Vec.
 
-7️⃣ API & Deployment
+7️⃣ API, Deployment & Frontend
 
+- Frontend (Streamlit UI):
 
+The user interacts with a frontend application built using Streamlit, hosted on Streamlit Cloud. It provides an intuitive interface for submitting text reviews and viewing predictions. Please find the repo to the frondend --> https://github.com/speroulakis/Mental_Health_Risks_Front
 
+- Backend (FastAPI on Cloud Run):
 
+The backend is built with FastAPI, exposing RESTful API endpoints.
+The application is containerized using Docker and deployed on Google Cloud Run.
+
+- Preprocessing and Machine Learning Model:
+
+Submitted reviews are preprocessed (e.g., tokenized, cleaned) in the backend.
+The preprocessed data is passed through our Word2Vec model, which is preloaded in memory.
+The model produces embeddings, which are then used by our LSTM model to make predictions.
+
+- Data Flow:
+
+Users submit text reviews via the frontend.
+The reviews are sent as HTTP POST requests to the backend.
+The backend processes the reviews through the Word2Vec model and the classifier, returning predictions to the frontend in JSON format.
