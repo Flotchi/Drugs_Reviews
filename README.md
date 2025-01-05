@@ -164,11 +164,14 @@ Training shows after 27 epochs an accuary on validation data that does not excee
 
 6️⃣ Model choice
 
-# API
-Document main API endpoints here
+The choice of **LSTM + Word2Vec** is justified for our scenario because it strikes the right balance between speed, simplicity, and performance, especially for tasks with straightforward language patterns or limited data. This combination leverages the strengths of pre-trained Word2Vec embeddings and LSTM's sequential modeling capabilities, making it an efficient and effective choice.
 
-# Setup instructions
-Document here for users who want to setup the package locally
+We don't use XGBoost because it doesn't handle sequential or contextual information inherent in text data, as it requires manual feature engineering (e.g., TF-IDF) that often fails to capture semantic and temporal dependencies effectively.
 
-# Usage
-Document main functionalities of the package here
+We don't use BERT because, while powerful, it is computationally expensive and slower to train due to its complex transformer-based architecture. For smaller datasets or simpler tasks, it can be overkill, and its performance may not justify the additional training time and resource requirements compared to LSTM + Word2Vec.
+
+7️⃣ API & Deployment
+
+
+
+
